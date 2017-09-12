@@ -43,7 +43,14 @@ function noWeakLink() {
     method: 'GET',
     url: '/api/users'
   })
-  // CODE HERE...
+.then(function(res){
+  firstUser = res.data[0];
+  return res;
+}
+.then(function(res2){
+  thirdUser = res2.data[2];
+  return res2.data[9]
+});
 
 }
 
@@ -73,7 +80,8 @@ function large() {
 
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
-// CODE HERE...
+
+var boundToElephant = large.bind(elephant);
 
 
 
@@ -87,7 +95,9 @@ function large() {
 // Use explicit binding to give capacity the context of crew
 // and return the bound function.
 
-// CODE HERE...
+function deathStar(capacity, crew) {
+    return capacity.bind(crew)
+}
 
 
 
@@ -102,7 +112,11 @@ function large() {
 // The closure function will take in a parameter: liabilities (Number)
 // The closure function will return the combined value of assets and liabilities.
 
-// CODE HERE...
+function accountingOffice(assets) {
+  return function(liabilities) {
+    return assests + liabilities
+  }
+}
 
 
 
@@ -127,7 +141,17 @@ function large() {
 //     remember: << array of items to be remembered >>
 // };
 
-// CODE HERE...
+function forgetter(name) {
+  var obj = {
+    name: ,
+    remember: []
+  }
+  var rememberall function(item) {
+    obj.remember.push(item)
+    return obj;
+  }
+  return rememberall;
+}
 
 
 
@@ -155,4 +179,23 @@ function large() {
 
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
-// CODE HERE...
+function frodo(startingHungerValue, startingDangerValue) {
+  var hunger =  startingHungerValue;
+  var danger = startingDangerValue;
+
+
+  return {
+    dinnerOverFire: function() {
+      hunger -= 25;
+      danger += 40;
+      if (hunger < 0) hunger = 0;
+      if (hunger > 100) hunger = 100;
+      if (danger < 0) hunger = 0;
+      if (danger > 100) hunger = 100;
+      return {
+        hunger: hunger,
+        danger: danger
+      }
+    }
+  }
+}
